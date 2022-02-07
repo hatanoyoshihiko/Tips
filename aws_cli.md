@@ -13,11 +13,19 @@ Operate AWS resource using AWS CLI.
 
 ## Install aws cli
 
+[Installing or updating the latest version of the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+
 ## Credential priority
 
 command argument > environment variable > credential file
 
 ## Issue credential
+
+Crendential has Access key ID and Secret Access Key.
+
+- Issue Access Key ID and Secret Access Key
+
+You must log in aws console.
 
 `IAM > User > User Name > authentication > assign mfa device`
 
