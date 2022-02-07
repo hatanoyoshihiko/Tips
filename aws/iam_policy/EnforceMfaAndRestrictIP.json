@@ -1,0 +1,22 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "EnforceMfaAndRestrictIP",
+            "Effect": "Deny",
+            "Action": "*",
+            "Resource": "*",
+            "Condition": {
+                "NotIpAddress": {
+                    "aws:SourceIp": "180.30.0.0/17"
+                },
+								"BoolIfExists": {
+                    "aws:MultiFactorAuthPresent": false
+                },
+                "Bool": {
+                    "aws:ViaAWSService": "false"
+                }
+            }
+        }
+    ]
+}
