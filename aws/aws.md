@@ -14,7 +14,7 @@ $ export AWS_DEFAULT_REGION=us-east-1
 
 Note: --duratin-seconds can configure until 43200.
 
-`$ aws sts get-session-token --serial-number arn:aws:iam:ACCOUNT_NO:mfa/USERNAME --duration-seconds 900 --token-code MFA_CODE`
+`$ aws sts get-session-token --serial-number arn:aws:iam::ACCOUNT_NO:mfa/USERNAME --duration-seconds 900 --token-code MFA_CODE`
 
 - result
 ```json
