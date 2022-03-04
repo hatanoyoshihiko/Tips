@@ -2,7 +2,7 @@
 
 ## Composition
 
-A communication diagram is below.
+A communication diagram is below.  
 Note: CA certificate may be the same for Server and Client.
 
 ```mermaid
@@ -32,6 +32,7 @@ sequenceDiagram
 ```
 
 - Create private key for CA  
+
 `# openssl genrsa -out ca.key 4096`
 
 - Create CA Certificate for root CA
@@ -48,6 +49,7 @@ Email Address []:
 ```
 
 - Create private key for client certificate  
+
 `# openssl genrsa -out client.key 4096`
 
 - Create CSR for client certificate
@@ -88,6 +90,7 @@ Verifying - Enter Export Password:
 ## Create server certificate
 
 - Create private key for server
+
 `# openssl genrsa -out server.key 4096`
 
 - Create CSR for server
@@ -157,7 +160,8 @@ server.key
 - Access Check using browser
 Note: if you open the browser, close it.
 
-access to below URL using browser. if when the authentication screen appears, select and press client certificate.
+access to below URL using browser.  
+if when the authentication screen appears, select and press client certificate.  
 https://x.x.x.x/
 
 - Access Check using curl
@@ -168,7 +172,7 @@ https://x.x.x.x/
 
 ## In case of change the authentication in different directories
 
-In case of below, User having client certificate(aaa.test.local) is allowed https://localhost/auth01/.
+In case of below, User having client certificate(aaa.test.local) is allowed https://localhost/auth01/.  
 And user having client certificate(bbb.test.local) is allowed https://localhost/auth02/.
 
 ```zsh
