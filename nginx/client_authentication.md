@@ -1,26 +1,28 @@
-# Nginx tips
+# How to configure client authentication using a certificate
 
-## How to install
+## Composition
 
-- RHEL
+A communication diagram is below.
+Note: CA certificate may be the same for Server and Client.
 
-`$ sudo dnf install nginx`
+```mermaid
+sequenceDiagram
+    participant Client
+    Note right of Client: Client Certificate
+    Note right of Client: Client Private key
+    Note right of Client: Root Certificate (for Server)
+    participant Server
+    Note right of Server: Nginx
+    Note right of Server: Server Certificate
+    Note right of Server: Server Private key
+    Note right of Server: Root Certificate (for Client)
+    Client->>Server: Require Connection (Server Authentication)
+    Server->>Client: Answer Connection
+    Server->>Client: Require Client Certificate (Client Authentication)
+    Client->>Server: Answer Client certificate
 
-Note: dependency packages are also installed  
-
-- nginx-all-modules
-- nginx-mod-http-image-filter
-- nginx-mod-http-perl
-- nginx-mod-http-xslt-filter
-- nginx-mod-mail
-- nginx-mod-stream
-
-## Basic
-Now writing.
-
-## TLS
-
-### TLS with client certificate
+```
+## Create client certificate
 
 - Create directory
 
@@ -83,7 +85,7 @@ Enter Export Password:
 Verifying - Enter Export Password:
 ```
 
-### TLS with server certificate
+## Create server certificate
 
 - Create private key for server
 `# openssl genrsa -out server.key 4096`
@@ -123,7 +125,7 @@ Getting Private key
   - Based on the type of certificate  
 	(client certificate is deployed person, ca certificate is deployed Trusted Certifying Authority）
 
-### Configure nginx
+## Configure nginx
 
 - Place certificate file on server
 
@@ -164,7 +166,7 @@ https://x.x.x.x/
 # curl -k --cert ./client.crt --key ./client.key https://localhost/
 ```
 
-### In case of change the authentication in different directories
+## In case of change the authentication in different directories
 
 In case of below, User having client certificate(aaa.test.local) is allowed https://localhost/auth01/.
 And user having client certificate(bbb.test.local) is allowed https://localhost/auth02/.
@@ -196,9 +198,10 @@ And user having client certificate(bbb.test.local) is allowed https://localhost/
 		}
 ```
 
+see also variables for ssl.  
+- [Embedded Variables](http://nginx.org/en/docs/http/ngx_http_ssl_module.html)
+
 ## Reverse proxy
-
-
 
 ## See also
 
