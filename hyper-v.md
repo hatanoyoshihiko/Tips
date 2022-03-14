@@ -22,10 +22,12 @@ Note:
 
 #### Create New Virtual Switch
 
-- Create New virtual switch
+- Create New virtual switch  
+
 `> New-VMSwitch -Name "Virtual Switch - "SWITCH_NAME" -NetAdapterName "NIC1","NIC2" -TeamingMode "SwitchIndependent" -LoadBalancingAlgorithm "Dynamic"`
 
-- Check setting
+- Check setting  
+
 `Get-VMSwitchTeam "Virtual Switch - "SWITCH_NAME"`
 
  1. check if "NetAdapterInterfaceDescription" has "{NIC1,NIC2}".
@@ -38,23 +40,29 @@ if you need os network port for management, backup, etc, try below.
 this port can use vlan (below example is access vlan)
 
 - Add nic port to virtual switch (available apply network settings, etc. IP address)
+
 `> Set-VMNetworkAdapterVlan -ManagementOS -VMNetworkAdapterName "NIC__PORT_NAME" -Access -VlanID 100`
 
 - Check setting
+
 `> Get-VMNetworkAdapterVlan -ManagementOS`
 
 #### Enable RDMA
 
 - Check setting
-`> Get-NetOffloadGlobalSetting`
 check if "NetworkDIrect" has "Enabled", if not try below.****
 
+`> Get-NetOffloadGlobalSetting`
+
 - Enable the global TCP/IP offload setting
+
 `> Set-NetOffloadGlobalSetting -NetworkDirect Enabled`
 
 - Check setting
-`> Get-NetAdapterRdma`
 check if "Enabled" column has all "True", if not try below.
 
+`> Get-NetAdapterRdma`
+
 - Enable RDMA
+
 `> Enable-NetAdapterRdma -Name "NIC_NAME"`
