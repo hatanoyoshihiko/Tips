@@ -36,10 +36,13 @@ sequenceDiagram
 
 1. Bastion
 
-`$ ssh BASTION_IP_ADDRESS -R SRC_PORT:DEST_IP_ADDRESS:DEST_PORT`
+`$ ssh -i KEY_FILE USER:BASTION_IP_ADDRESS -D BASTION_PORT`  
+
 `$ ssh -i /home/ec2-user/.ssh/web.pem ec2-user@172.16.1.4 -D 1080`
 
 2. Private
+
+`$ ssh -i KEY_FILE -R PRIBATE_PORT:localhost:BASTION_PORT USER@PRIVATE_IP_ADDRESS`  
 
 `$ ssh -i .ssh/web.pem -R 2080:localhost:1080 centos@172.16.0.4`
 
@@ -48,9 +51,9 @@ sequenceDiagram
 `$ sudo vi /etc/yum.conf`
 
 ```bash
-proxy=socks5://127.0.0.1/2080
+proxy=socks5://127.0.0.1:2080
 ```
-ssss
+
 4. yum update
 
 `$ sudo yum update`
