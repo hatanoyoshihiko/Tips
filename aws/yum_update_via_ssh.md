@@ -9,9 +9,9 @@ Note: SSH Server do not need to configure.
 this server can access to internet.
 
 - Private  
-this server can't connect internet.
+this server can't connect internet.  
 
-```Mermaid
+```mermaid
 sequenceDiagram
     participant Bastion
     Note right of Bastion: Public NW 172.16.1.4
