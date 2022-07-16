@@ -74,8 +74,8 @@ Create route map on fortigate.
 	end		
 ```
 
-- Current routing information clear on fortigate
-`# execute router clear bgp all`
+- Current routing information clear on fortigate  
+  `# execute router clear bgp all`
 
 - Check routing information  
   `# get route info bgp network`  
