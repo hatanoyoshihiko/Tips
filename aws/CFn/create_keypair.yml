@@ -1,0 +1,12 @@
+# reference from aws 
+## https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-keypair.html
+
+Resources:
+  CFnKeyPair:
+      Type: AWS::EC2::KeyPair
+      Properties: 
+        KeyName: cfn-keypair
+        KeyType: rsa
+        Tags: 
+          - Key: Name
+            Value: cfn-keypair
