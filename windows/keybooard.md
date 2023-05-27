@@ -7,12 +7,17 @@
 
 ## Settting
 
-- You can save below code as keyboard.reg.
+- Check your keyboard device instance path
+  - Device manager -> Keyboard -> your keyboard -> property -> detail tab -> device instance path
+  Example: `ACPI\DLLK0B46\4&2BE28486&0`
+
+- You can save below code as keyboard.reg
+  - you should replace @@@ to your device instance path
 
 ```reg
 Windows Registry Editor Version 5.00
 
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\ACPI\DLLK0B46\4&2BE28486&0\Device Parameters]
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\@@@\Device Parameters]
 "OverrideKeyboardType"=dword:00000007
 "OverrideKeyboardSubtype"=dword:00000002
 ```
@@ -20,3 +25,5 @@ Windows Registry Editor Version 5.00
 - run reg
 
 - reboot your pc
+
+- try your type!
