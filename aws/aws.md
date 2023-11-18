@@ -1,6 +1,6 @@
 # AWS CLI tips
 
-## AWS CLI using a mfa
+## AWS CLI using a MFA
 
 ### Set Access key and Secret key
 
@@ -12,11 +12,13 @@ $ export AWS_DEFAULT_REGION=us-east-1
 
 ### Get token
 
-Note: --duratin-seconds can configure until 43200.
+Note: --duratin-seconds can configure until 43200.  
+Note: Specify USERNAME as your IAM User.
 
 `$ aws sts get-session-token --serial-number arn:aws:iam::ACCOUNT_NO:mfa/USERNAME --duration-seconds 900 --token-code MFA_CODE`
 
 - result
+  
 ```json
 {
     "Credentials": {
@@ -36,4 +38,9 @@ $ export AWS_SECRET_ACCESS_KEY=123456789
 $ export AWS_SESSION_TOKEN=123456789123456789
 ```
 
-### Run AWS CLI
+### How to extract InstanceID from ec2 describe-instances
+
+- Output shows that filtered instance name and state is running.
+- Note: Specify your instance name to INSTANCE_NAME.
+
+`$ aws ec2 describe-instances --filters 'Name=tag-key,Values=Name' 'Name=tag-value,Values=INSTANCE_NAME' --query 'Reservations[*].Instances[*].{Instance:InstanceId,State:State.Name}' --output json`  
