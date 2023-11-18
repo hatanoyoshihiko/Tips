@@ -43,4 +43,12 @@ $ export AWS_SESSION_TOKEN=123456789123456789
 - Output shows that filtered instance name and state is running.
 - Note: Specify your instance name to INSTANCE_NAME.
 
-`$ aws ec2 describe-instances --filters 'Name=tag-key,Values=Name' 'Name=tag-value,Values=INSTANCE_NAME' --query 'Reservations[*].Instances[*].{Instance:InstanceId,State:State.Name}' --output json`  
+`$ aws ec2 describe-instances --filters 'Name=tag-key,Values=Name' 'Name=tag-value,Values=INSTANCE_NAME' --query 'Reservations[*].Instances[*].{Instance:InstanceId,State:State.Name}' --output json`
+
+### How to start ssm
+
+- Note:
+  - PROFILE_NAME: your AWS CLI PROFILE NAME
+  - INSTANCE_ID: your instance id
+
+`$ aws ssm start-session --target INSTANCE_ID --profile PROFILE_NAME`
