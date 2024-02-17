@@ -7,3 +7,5 @@
 [cloud_watch_agent](./cloud_watch_agent.md)
 
 [yum_update](./yum_update_via_ssh.md)
+
+[sws](./sqs.md)
