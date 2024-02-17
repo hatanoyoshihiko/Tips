@@ -2,7 +2,7 @@
 Something technical tips.
 ## Tips List
 
-[aws](./aws/aws.md)
+[aws](./aws/readme.md)
 
 [bind](./bind.md)
 
