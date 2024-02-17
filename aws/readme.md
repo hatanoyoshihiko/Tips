@@ -8,4 +8,4 @@
 
 [yum_update](./yum_update_via_ssh.md)
 
-[sws](./sqs.md)
+[sqs](./sqs.md)
