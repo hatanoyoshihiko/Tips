@@ -4,6 +4,7 @@ from botocore.exceptions import ClientError
 # 設定値
 days_after_creation = 30  # オブジェクト作成後に移行する日数
 storage_class = 'INTELLIGENT_TIERING'  # 移行先のストレージクラス
+lifecycle_rule_id = 'MoveToIntelligentTieringAfterDays'  # ライフサイクルルールのID
 
 def apply_lifecycle_rule_to_all_buckets():
     # AWSクライアントの作成
@@ -34,7 +35,7 @@ def apply_lifecycle_rule_to_all_buckets():
             lifecycle_rule = {
                 'Rules': [
                     {
-                        'ID': 'MoveToIntelligentTieringAfterDays',
+                        'ID': lifecycle_rule_id,
                         'Filter': {'Prefix': ''},  # バケット内の全てのオブジェクトに適用
                         'Status': 'Enabled',
                         'Transitions': [
