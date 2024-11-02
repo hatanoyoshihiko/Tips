@@ -2,8 +2,6 @@
 Something technical tips.
 ## Tips List
 
-[aws](./aws/readme.md)
-
 [bind](./bind.md)
 
 [ca_easyrsa](./ca_easyrsa.md)
