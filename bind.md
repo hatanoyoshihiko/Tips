@@ -231,9 +231,9 @@ $ORIGIN alessiareya.local.
 				300			; Negative cache TTL
 				)
 ;
-IN	NS	ns1
-IN	MX	10 mx
-IN	A 	192.168.11.253
+				IN	NS	ns1
+				IN	MX	10 mx
+				IN	A 	192.168.11.253
 ns1			IN	A	192.168.11.200
 mx			IN	A	192.168.11.200
 www			IN	A	192.168.11.200
