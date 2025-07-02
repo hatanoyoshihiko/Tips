@@ -10,7 +10,43 @@
 `# apt install bind9 bind9-utils`
 
 ## create tsig key
-`# dnssec-keygen -K /etc/bind -a ED25519 -P 20210430000000 -A 20210430000000 -I 20400101000000 20alessiareya.local`
+- KSK (key signed key)
+`# dnssec-keygen -a ED25519 -b 256 -n ZONE -f KSK alessiareya.local`  
+
+- ZSK (zone signing key)  
+`# dnssec-keygen -a ED25519 -b 256 -n ZONE alessiareya.local`  
+
+- Add KSK, ZSK Key to zone file  
+`# cat Kalessiareya.local.+015+KSKID.key | tee -a /etc/bind/zone/alessiareya.local.zone`  
+`# cat Kalessiareya.local.+015+ZSKID.key | tee -a /etc/bind/zone/alessiareya.local.zone`
+
+- Sign to zone file   
+```
+# dnssec-signzone -A -3 $(head -c 1000 /dev/random | sha1sum | cut -b 1-16) \
+  -N increment -o alessiareya.local -t \
+  /etc/bind/zone/alessiareya.local.zone \
+  Kalessiareya.local.+015+KSKID.key Kalessiareya.local.+015+ZSKID.key
+```
+
+- result
+  
+```
+Verifying the zone using the following algorithms:
+- ED25519
+Zone fully signed:
+Algorithm: ED25519: KSKs: 1 active, 0 stand-by, 0 revoked
+                    ZSKs: 1 active, 0 stand-by, 0 revoked
+/etc/bind/zone/alessiareya.local.zone.signed
+Signatures generated:                       19
+Signatures retained:                         0
+Signatures dropped:                          0
+Signatures successfully verified:            0
+Signatures unsuccessfully verified:          0
+Signing time in seconds:                 0.005
+Signatures per second:                3800.000
+Runtime in seconds:                      0.028
+```
+
 
 ## master server configuration
 
@@ -462,10 +498,13 @@ zone alessiareya.local/IN: loaded serial 2021042506
 OK
 ```
 
-- zone transfer from  slave server
+- start service  
+`# systemctl start named.service`
+
+- zone transfer from  slave server  
 `# rndc retransfer alessiareya.local`
 
-- zone transfer from master server
+- zone transfer from master server  
 `# rndc notify alessiareya.local`
 
 -  zone file update
