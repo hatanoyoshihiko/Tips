@@ -54,8 +54,8 @@ Runtime in seconds:                      0.028
 `# chown root:bind /etc/bind/keys/*/private`  
 `# chmod 640 /etc/bind/keys/*.private`  
 
-- If you want to publish your zone file on the Internet
-Add this file to the zone file of the upper-level name server to DNSSEC verification.
+- If you want to publish your zone file on the Internet  
+Add this file to the zone file of the upper-level name server to DNSSEC verification.  
 dsset-alessiareya.local.
 
 ## master server configuration
