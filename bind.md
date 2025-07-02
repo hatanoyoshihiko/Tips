@@ -10,7 +10,7 @@
 `# apt install bind9 bind9-utils`
 
 ## create tsig key
-- KSK (key signed key)
+- KSK (key signed key)  
 `# dnssec-keygen -a ED25519 -b 256 -n ZONE -f KSK alessiareya.local`  
 
 - ZSK (zone signing key)  
@@ -47,6 +47,16 @@ Signatures per second:                3800.000
 Runtime in seconds:                      0.028
 ```
 
+- Move private key  
+
+`# mkdir /etc/bind/keys`  
+`# mv *.private /etc/bind/keys`  
+`# chown root:bind /etc/bind/keys/*/private`  
+`# chmod 640 /etc/bind/keys/*.private`  
+
+- If you want to publish your zone file on the Internet
+Add this file to the zone file of the upper-level name server to DNSSEC verification.
+dsset-alessiareya.local.
 
 ## master server configuration
 
